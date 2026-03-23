@@ -17,4 +17,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 COPY Caddyfile /etc/caddy/Caddyfile
 
-CMD php-fpm & caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+CMD php artisan migrate --force && php-fpm & caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

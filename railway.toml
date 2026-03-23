@@ -1,8 +1,3 @@
 [deploy]
 startCommand = "php artisan migrate --force && php artisan storage:link && php artisan optimize && php-fpm & caddy run --config /etc/caddy/Caddyfile"
 healthcheckPath = "/"
-
-
-**1.3 — Set your logs to stderr** so Railway can display them. In your `.env.example`:
-
-LOG_CHANNEL=stderr

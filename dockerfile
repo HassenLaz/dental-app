@@ -3,8 +3,7 @@ FROM php:8.2-fpm
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    git curl zip unzip libzip-dev libicu-dev \
-    nodejs npm \
+    git curl unzip zip libzip-dev libicu-dev g++ \
     && docker-php-ext-install intl zip pdo pdo_mysql \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -21,7 +20,7 @@ WORKDIR /var/www
 COPY . .
 
 # Install PHP dependencies
-RUN composer install --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip
 
 # Install Node dependencies (if you have frontend build)
 RUN npm install

@@ -13,6 +13,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 
+/** @noinspection PhpSignatureMismatchDuringInheritanceInspection */
 class PatientResource extends Resource
 {
     protected static ?string $model = Patient::class;
@@ -35,10 +36,10 @@ class PatientResource extends Resource
                 Section::make('Personal Information')
                     ->columns(2)
                     ->schema([
-                        TextEntry::make('cin')->label('CIN'),
-                        TextEntry::make('gender')->label('Genre'),
                         TextEntry::make('first_name')->label('Prénom'),
                         TextEntry::make('last_name')->label('Nom'),
+                        TextEntry::make('cin')->label('CIN'),
+                        TextEntry::make('gender')->label('Genre'),
                         TextEntry::make('birthdate')->date()->label('Date de naissance'),
                         TextEntry::make('phone')->label('Téléphone'),
                         TextEntry::make('email')->label('Email'),
@@ -55,7 +56,7 @@ class PatientResource extends Resource
     public static function table(Table $table): Table
     {
         return PatientsTable::configure($table)
-            ->recordUrl(fn ($record) => Pages\ViewPatient::getUrl(['record' => $record]));
+            ->recordUrl(fn($record) => Pages\ViewPatient::getUrl(['record' => $record]));
     }
 
     public static function getRelations(): array

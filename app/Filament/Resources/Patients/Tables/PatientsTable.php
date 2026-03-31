@@ -15,31 +15,47 @@ class PatientsTable
     {
         return $table
             ->columns([
-                TextColumn::make('cin')
-                    ->searchable(),
+                TextColumn::make('num_record')
+                    ->label('N°')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('first_name')
+                    ->label('Prénom')
                     ->searchable(),
                 TextColumn::make('last_name')
-                    ->searchable(),
+                    ->label('Nom')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('birthdate')
-                    ->date()
+                    ->label('Date de naissance')
+                    ->date('d/m/Y')
                     ->sortable(),
                 TextColumn::make('gender')
+                    ->label('Genre')
+                    ->formatStateUsing(fn(string $state): string => $state === 'M' ? 'Homme' : 'Femme')
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->label('Téléphone')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
+                TextColumn::make('cin')
+                    ->label('CIN')
+                    ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')
+                    ->label('Première visite')
+                    ->date('d/m/Y')
+                    ->sortable(),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Mis à jour')
+                    ->dateTime('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

@@ -1,0 +1,1 @@
+<img src="{{ asset('/logo.png') }}" alt="Dental App" class="h-16 w-auto" />

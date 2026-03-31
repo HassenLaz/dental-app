@@ -13,6 +13,9 @@
         @livewire('dental-chart', ['patientId' => $record->id], key('dental-chart-' . $record->id))
     </div>
     <div class="mt-6">
+        @livewire('treatment-plan-manager', ['patientId' => $record->id], key('plans-' . $record->id))
+    </div>
+    <div class="mt-6">
         @livewire('patient-files', ['patientId' => $record->id], key('patient-files-' . $record->id))
     </div>
     {{-- Flash message --}}

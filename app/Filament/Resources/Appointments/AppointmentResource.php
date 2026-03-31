@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 
+/** @noinspection PhpSignatureMismatchDuringInheritanceInspection */
 class AppointmentResource extends Resource
 {
     protected static ?string $model = Appointment::class;
@@ -20,6 +21,7 @@ class AppointmentResource extends Resource
     protected static ?string $pluralModelLabel = 'Rendez-vous';
     protected static ?string $slug = 'appointments';
 
+    
     public static function form(Form $form): Form
     {
         return AppointmentForm::configure($form);
@@ -32,17 +34,15 @@ class AppointmentResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAppointments::route('/'),
+            'index'  => Pages\ListAppointments::route('/'),
             'create' => Pages\CreateAppointment::route('/create'),
-            'edit' => Pages\EditAppointment::route('/{record}/edit'),
+            'edit'   => Pages\EditAppointment::route('/{record}/edit'),
         ];
     }
 }

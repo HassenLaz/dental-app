@@ -14,15 +14,15 @@ class PatientForm
     {
         return $form
             ->schema([
-                TextInput::make('cin')
-                    ->label('CIN')
-                    ->unique(ignoreRecord: true),
                 TextInput::make('first_name')
                     ->label('Prénom')
                     ->required(),
                 TextInput::make('last_name')
                     ->label('Nom')
                     ->required(),
+                TextInput::make('cin')
+                    ->label('CIN')
+                    ->unique(ignoreRecord: true),
                 DatePicker::make('birthdate')
                     ->label('Date de naissance')
                     ->required(),
@@ -37,6 +37,21 @@ class PatientForm
                     ->label('Téléphone')
                     ->tel()
                     ->required(),
+                DatePicker::make('created_at')
+                    ->label('Date de première visite')
+                    ->displayFormat('d/m/Y')
+                    ->native(false)
+                    ->default(now())
+                    ->required()
+                    ->columnSpan(1),
+                TextInput::make('num_record')
+                    ->label('Numéro de fiche')
+                    ->numeric()
+                    ->integer()                    
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->minValue(1)
+                    ->columnSpan(1),
                 TextInput::make('email')
                     ->label('Email')
                     ->email(),
